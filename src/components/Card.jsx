@@ -1,4 +1,12 @@
 function Card(props) {
+  
+  const setTypeAlert = () => {
+    if (props.status === 'ready') return 'alert alert-primary';
+    if (props.status === 'success') return 'alert alert-success';
+    if (props.status === 'fail') return 'alert alert-danger';
+    return 'alert-secondary'
+  }
+
   return (
     <div className="card border-dark mb-3" >
       <div className="card-header">{props.header}</div>
@@ -7,7 +15,10 @@ function Card(props) {
         <div className="card-text">{props.text}</div>
       </div>
       <div className="card-footer">
-        {props.footer}
+      {props.statusMessage && 
+          <div className={setTypeAlert() + " alert alert-dismissible fade show mt-2"} role="alert">
+                {props.statusMessage}
+          </div>}
       </div>
     </div>
   );
